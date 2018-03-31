@@ -83,3 +83,8 @@ void paint::on_btnNewPic_clicked()
            ui->graphicsView->scene()->clear();
        }
 }
+
+void paint::on_btnRepeat_clicked()
+{
+     ui->graphicsView->scene()->clear();
+}

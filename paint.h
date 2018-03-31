@@ -43,6 +43,7 @@ private slots:
     void savePic();
     void on_btnSavePic_clicked();
     void on_btnNewPic_clicked();
+    void on_btnRepeat_clicked();
 };
 
 #endif // paint_H
