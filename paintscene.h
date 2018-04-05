@@ -13,7 +13,7 @@ class paintScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-     explicit paintScene(const QRectF & sceneRect, QObject *parent = 0);
+    explicit paintScene(QObject *parent = 0);
     void setBrush(toolsBar *brush);
     void setBrushType(bool status);
     ~paintScene();

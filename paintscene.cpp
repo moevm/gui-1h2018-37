@@ -1,6 +1,6 @@
 #include "paintscene.h"
 
-paintScene::paintScene(const QRectF & sceneRect, QObject *parent) : QGraphicsScene(sceneRect, parent)
+paintScene::paintScene(QObject *parent) : QGraphicsScene(parent)
 {
     myBrush = new toolsBar();
 }
