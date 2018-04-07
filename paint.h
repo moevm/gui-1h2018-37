@@ -31,18 +31,18 @@ private:
      * */
     void resizeEvent(QResizeEvent * event);
     Ui::paint *ui;
-    QTimer *timer;      /* Определяем таймер для подготовки актуальных размеров
-                         * графической сцены
-                         * */
     paintScene *scene;  // Объявляем кастомную графическую сцену
     toolsBar *tool;
+    QString Folder;//Путь к папке, в которой должен храниться проект
+    QString fileName;//Путь к конкретному кадру в папке
+    int n;//Счетчик количества кадров
 
 private slots:
-    void slotTimer();
     void selectColor();
     void savePic();
-    void on_btnSavePic_clicked();
     void on_btnNewPic_clicked();
+    void on_btnRepeat_clicked();
+    void on_btnStart_clicked();
 };
 
 #endif // paint_H
