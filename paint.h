@@ -43,6 +43,7 @@ private slots:
     void on_btnNewPic_clicked();
     void on_btnRepeat_clicked();
     void on_btnStart_clicked();
+    void on_btnGif_clicked();
 };
 
 #endif // paint_H

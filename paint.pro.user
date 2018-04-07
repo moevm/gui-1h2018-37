@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.2.0, 2018-04-07T19:44:34. -->
+<!-- Written by QtCreator 4.2.0, 2018-04-07T19:43:12. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -282,7 +282,7 @@
      <value type="int">13</value>
      <value type="int">14</value>
     </valuelist>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <value type="int" key="PE.EnvironmentAspect.Base">-1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">paint</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>

@@ -96,3 +96,10 @@ void paint::on_btnStart_clicked()
     ui->stackedWidget->setCurrentIndex(1);
     this->resizeEvent(NULL);
 }
+
+
+
+void paint::on_btnGif_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
