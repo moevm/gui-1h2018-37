@@ -44,6 +44,10 @@ private slots:
     void on_btnRepeat_clicked();
     void on_btnStart_clicked();
     void on_btnGif_clicked();
+    void on_btnPlay_clicked();
+    void on_btnOpen_clicked();
+    void on_btnBack_2_clicked();
+    void on_btnSave_clicked();
 };
 
 #endif // paint_H
