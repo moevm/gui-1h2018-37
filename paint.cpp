@@ -12,17 +12,19 @@ paint::paint(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     tool = new toolsBar();
-    ui->graphicsView->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    ui->graphicsView_2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    //ui->graphicsView_3->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    ui->graphicsView->setAlignment( Qt::AlignLeft | Qt::AlignTop);
+    ui->graphicsView_2->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    tmr = new QTimer();
+
+    connect(tmr, SIGNAL(timeout()), this, SLOT(updatePict()));
+
+    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(on_btnPlay_clicked(int)));
 
     QGraphicsScene *leftScene = new QGraphicsScene();
-    //QGraphicsScene *newScene = new QGraphicsScene();
     scene = new paintScene(ui->graphicsView_2->rect(), ui->graphicsView_2);
     scene->setBrush(tool);
     ui->graphicsView->setScene(leftScene);
     ui->graphicsView_2->setScene(scene);
-    //ui->graphicsView_3->setScene(newScene);
 
     connect(ui->btnSetRuber, SIGNAL(clicked()), tool, SLOT(setRuber()));
     connect(ui->btnSetBrush, SIGNAL(clicked()), tool, SLOT(setBrush()));
@@ -108,44 +110,29 @@ void paint::on_btnStart_clicked()
 void paint::on_btnGif_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
-
-}
-
-void paint::on_btnPlay_clicked()
-{
-    /*for (int i =0; i<n; i++)
-    {
-        fileName = Folder;
-        fileName.append("/");
-        fileName.append(QString::number(i));
-        fileName.append(".png");
-        QTime t;
-        t.start();
-        while (t.elapsed() <= 500)
-        {
-            ui->graphicsView_3->scene()->addPixmap(fileName);
-        }
-    }*/
-
-    /*QPixmap p;
-    QLabel *lbl = new QLabel;
+    p = new QPixmap [n];
     for(int i=1; i<n;i++)
     {
         fileName = Folder;
         fileName.append("/");
         fileName.append(QString::number(i));
         fileName.append(".png");
-        p.load(fileName);
-        QTime t;
-        t.start();
-        while (t.elapsed() <= 5000)
-        {
-            lbl->resize(p.size());
-            lbl->setPixmap(p);
-            lbl->setGeometry(0, 0,p.size().width(),p.size().height());
-            lbl->show();
-        }
-    }*/
+        p[i].load(fileName);
+    }
+}
+
+void paint::updatePict()
+{
+    if (z>=n) z = 1;
+    ui->frames->setPixmap(p[z]);
+    z++;
+
+}
+
+void paint::on_btnPlay_clicked(int k)
+{
+    tmr->setInterval(k);
+    tmr->start();
 }
 
 void paint::on_btnOpen_clicked()
@@ -186,7 +173,8 @@ void paint::on_btnOpen_clicked()
                 fileName.append(".png");
                 QMessageBox msg;
                 msg.setText("Отрыть готовый проект");
-                msg.setInformativeText("Открыть последний кадр анимации в поле для рисования с возможностью редактирования?");
+                msg.setInformativeText("Открыть последний кадр анимации в поле для рисования с возможностью "
+                                       "редактирования?");
                 msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
                 msg.setDefaultButton(QMessageBox::Yes);
 
@@ -226,4 +214,9 @@ void paint::on_btnBack_2_clicked()
 void paint::on_btnSave_clicked()
 {
     savePic();
+}
+
+void paint::on_btnBack_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }

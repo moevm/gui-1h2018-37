@@ -24,7 +24,7 @@ background-color: rgb(239, 255, 224);</string>
    <item row="0" column="0">
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_4">
       <layout class="QGridLayout" name="gridLayout">
@@ -500,40 +500,146 @@ background-color: rgb(239, 255, 224);</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_5">
-      <widget class="QGraphicsView" name="graphicsView_3">
+      <widget class="QPushButton" name="btnPlay">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>529</y>
+         <width>115</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(170, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Запустить анимацию</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="frames">
        <property name="geometry">
         <rect>
          <x>9</x>
          <y>9</y>
-         <width>941</width>
-         <height>541</height>
+         <width>936</width>
+         <height>513</height>
         </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
       <widget class="QPushButton" name="btnBack">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>560</y>
-         <width>141</width>
+         <x>131</x>
+         <y>529</y>
+         <width>106</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(170, 255, 255);</string>
        </property>
        <property name="text">
         <string>Назад к редактору</string>
        </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
       </widget>
-      <widget class="QPushButton" name="btnPlay">
+      <widget class="QSlider" name="horizontalSlider">
        <property name="geometry">
         <rect>
-         <x>190</x>
-         <y>560</y>
-         <width>131</width>
-         <height>21</height>
+         <x>270</x>
+         <y>530</y>
+         <width>531</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>10</number>
+       </property>
+       <property name="maximum">
+        <number>300</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="pageStep">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+       <property name="sliderPosition">
+        <number>10</number>
+       </property>
+       <property name="tracking">
+        <bool>true</bool>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="invertedAppearance">
+        <bool>false</bool>
+       </property>
+       <property name="invertedControls">
+        <bool>false</bool>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TicksBothSides</enum>
+       </property>
+       <property name="tickInterval">
+        <number>50</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>530</y>
+         <width>21</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>Запустить анимацию</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;10&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>810</x>
+         <y>530</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;300&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>550</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Интервал смены кадров, мс</string>
        </property>
       </widget>
      </widget>
