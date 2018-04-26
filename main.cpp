@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-//last test1
+    //test
     QApplication a(argc, argv);
     paint w;
     w.show();

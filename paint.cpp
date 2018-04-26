@@ -2,7 +2,6 @@
 #include "ui_paint.h"
 #include <QMessageBox>
 #include <QTime>
-
 using namespace std;
 
 paint::paint(QWidget *parent) :
@@ -12,13 +11,8 @@ paint::paint(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     tool = new toolsBar();
-    ui->graphicsView->setAlignment( Qt::AlignLeft | Qt::AlignTop);
-    ui->graphicsView_2->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    tmr = new QTimer();
-
-    connect(tmr, SIGNAL(timeout()), this, SLOT(updatePict()));
-
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(on_btnPlay_clicked(int)));
+    ui->graphicsView->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    ui->graphicsView_2->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
     QGraphicsScene *leftScene = new QGraphicsScene();
     scene = new paintScene(ui->graphicsView_2->rect(), ui->graphicsView_2);
@@ -97,8 +91,7 @@ void paint::on_btnRepeat_clicked()
 
 void paint::on_btnStart_clicked()
 {
-    Folder= QFileDialog::getSaveFileName(this, "Выберите директорию и введите название для проекта",
-                                         QCoreApplication::applicationDirPath());
+    Folder= QFileDialog::getSaveFileName(this, "Выберите директорию и введите название для проекта", QCoreApplication::applicationDirPath());
     QDir().mkdir(Folder);
     n=1;
     ui->stackedWidget->setCurrentIndex(1);
@@ -107,116 +100,39 @@ void paint::on_btnStart_clicked()
 
 
 
+
+
+
+
 void paint::on_btnGif_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
-    p = new QPixmap [n];
-    for(int i=1; i<n;i++)
-    {
-        fileName = Folder;
-        fileName.append("/");
-        fileName.append(QString::number(i));
-        fileName.append(".png");
-        p[i].load(fileName);
-    }
 }
 
-void paint::updatePict()
+void paint::on_btnPlay_clicked()
 {
-    if (z>=n) z = 1;
-    ui->frames->setPixmap(p[z]);
-    z++;
+   QPixmap p;
+    QLabel *lbl = new QLabel;
+   for (int i=1; i<=n; i++)
+   {
+
+       fileName = Folder;
+                   fileName.append("/");
+                   fileName.append(QString::number(i));
+                   fileName.append(".png");
+                   p.load(fileName);
+                   lbl->clear();
+                   QTime t;
+                   t.start();
+                               while (t.elapsed() <= 900)
+                               {
+                                   lbl->resize(p.size());
+                                   lbl->setPixmap(p);
+                                   lbl->setGeometry(0, 0,p.size().width(),p.size().height());
+                                   lbl->show();
+
+
 
 }
-
-void paint::on_btnPlay_clicked(int k)
-{
-    tmr->setInterval(k);
-    tmr->start();
 }
-
-void paint::on_btnOpen_clicked()
-{
-    QMessageBox msg;
-    msg.setText("Открыть готовый проект");
-    msg.setInformativeText("Вам следует выбрать директорию, содержащую кадры анимации в формате png."
-                           " Директория может быть пустой, но в ней не должно храниться посторонних файлов!");
-    msg.setStandardButtons(QMessageBox::Ok);
-    msg.setDefaultButton(QMessageBox::Ok);
-
-    int ret = msg.exec();
-    if( ret == QMessageBox::Ok)
-    {
-        Folder= QFileDialog::getExistingDirectory(this, "Выберите директорию с кадрами проекта",
-                                                  QCoreApplication::applicationDirPath());
-        QDir dir;
-        dir = Folder;
-        n=dir.count()-2;
-        if (n>0)
-        {
-            bool check=true;
-            for (int i=1; i<=n; i++)
-            {
-                fileName = Folder;
-                fileName.append("/");
-                fileName.append(QString::number(i));
-                fileName.append(".png");
-                if (!QDir().exists(fileName))
-                    check=false;
-            }
-            if (check == true)
-            {
-                ui->stackedWidget->setCurrentIndex(1);
-                fileName = Folder;
-                fileName.append("/");
-                fileName.append(QString::number(n));
-                fileName.append(".png");
-                QMessageBox msg;
-                msg.setText("Отрыть готовый проект");
-                msg.setInformativeText("Открыть последний кадр анимации в поле для рисования с возможностью "
-                                       "редактирования?");
-                msg.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-                msg.setDefaultButton(QMessageBox::Yes);
-
-                int ret = msg.exec();
-                if( ret == QMessageBox::Yes) ui->graphicsView_2->scene()->addPixmap(fileName);
-                ui->graphicsView->scene()->addPixmap(fileName);
-                n++;
-            }
-            else
-            {
-                QMessageBox msg;
-                msg.setText("Посторонние файлы в директории");
-                msg.setInformativeText("В директории обнаружены файлы, которые не являются кадрами анимации."
-                                       " Рекомендуем вам удалить эти файлы или выбрать другую директорию.");
-                msg.setStandardButtons(QMessageBox::Ok);
-                msg.setDefaultButton(QMessageBox::Ok);
-                int ret = msg.exec();
-                if( ret == QMessageBox::Ok) return;
-            }
-        }
-        else
-        {
-            ui->stackedWidget->setCurrentIndex(1);
-            n=1;
-        }
-    }
-
-    this->resizeEvent(NULL);
-}
-
-void paint::on_btnBack_2_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-void paint::on_btnSave_clicked()
-{
-    savePic();
-}
-
-void paint::on_btnBack_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
 }
