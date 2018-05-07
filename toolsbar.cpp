@@ -1,4 +1,4 @@
-#include "toolsBar.h"
+#include "toolsbar.h"
 #include <QDebug>
 
 

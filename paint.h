@@ -8,7 +8,8 @@
 #include <QColorDialog>
 #include <QString>
 #include <QFileDialog>
-#include <QPixmap>
+#include <QLabel>
+
 #include "paintscene.h"
 #include "toolsbar.h"
 
@@ -36,6 +37,9 @@ private:
     QString Folder;//Путь к папке, в которой должен храниться проект
     QString fileName;//Путь к конкретному кадру в папке
     int n;//Счетчик количества кадров
+    QTimer *tmr;
+    QPixmap *p;
+    int z=1;//еще один счетчик
 
 private slots:
     void selectColor();
@@ -43,10 +47,13 @@ private slots:
     void on_btnNewPic_clicked();
     void on_btnRepeat_clicked();
     void on_btnStart_clicked();
-    //void on_btnGif_clicked();
-    //void on_btnPlay_clicked();
     void on_btnGif_clicked();
-    void on_btnPlay_clicked();
+    void on_btnPlay_clicked(int k);
+    void on_btnOpen_clicked();
+    void on_btnBack_2_clicked();
+    void on_btnSave_clicked();
+    void updatePict();
+    void on_btnBack_clicked();
 };
 
 #endif // paint_H
