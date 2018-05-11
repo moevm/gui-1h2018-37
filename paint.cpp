@@ -88,6 +88,7 @@ void paint::on_btnNewPic_clicked()
     if( ret == QMessageBox::No) ui->graphicsView_2->scene()->clear();
     ui->graphicsView->scene()->addPixmap(fileName);
     n++;
+    checkSave = false;
 }
 
 void paint::on_btnRepeat_clicked()
@@ -109,6 +110,7 @@ void paint::on_btnStart_clicked()
 
 void paint::on_btnGif_clicked()
 {
+    if (checkSave) n++;
     ui->stackedWidget->setCurrentIndex(2);
     p = new QPixmap [n];
     for(int i=1; i<n;i++)
@@ -213,10 +215,12 @@ void paint::on_btnBack_2_clicked()
 
 void paint::on_btnSave_clicked()
 {
+    checkSave = true;
     savePic();
 }
 
 void paint::on_btnBack_clicked()
 {
+    tmr->stop();
     ui->stackedWidget->setCurrentIndex(1);
 }

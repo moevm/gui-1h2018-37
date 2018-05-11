@@ -8,7 +8,6 @@
 #include <QColorDialog>
 #include <QString>
 #include <QFileDialog>
-#include <QLabel>
 
 #include "paintscene.h"
 #include "toolsbar.h"
@@ -40,6 +39,7 @@ private:
     QTimer *tmr;
     QPixmap *p;
     int z=1;//еще один счетчик
+    bool checkSave = false;//проверка сохранения
 
 private slots:
     void selectColor();
